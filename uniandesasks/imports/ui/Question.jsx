@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import Vote from './Vote.js'
+import Answer from './Answer.js'
 /**
 Clase para mostrar una pregunta
 **/
@@ -10,10 +11,16 @@ class Question extends Component{
 
 	render(){
 		return(
-				<div className="question">
-					<h4>{this.props.question.title}</h4>
-					<p>{this.props.question.text}</p>
-				</div>
+				<table className="question">
+					<tr>
+						<td><Vote/></td>
+						<td>{this.props.question.title}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>{this.props.question.text}</td>
+					</tr>
+				</table>
 			);
 	}
 }
