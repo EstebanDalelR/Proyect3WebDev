@@ -12,17 +12,11 @@ class NavBar extends Component{
 	render(){
 		return(
 			<div className="navBar">
-				<div className="logo col-md-2">
+				<div className="logo col-md-4">
 					<img src="../../img/logo.png" alt="SenecAsks logo"/>
 				</div>
-				<div className="searchbox col-md-3">
+				<div className="searchbox col-md-8">
 					<SearchBox></SearchBox>	
-				</div>
-				<div className="buttons col-md-7">
-					<button className="tab">Preguntas</button>
-					<button className="tab">Usuarios</button>
-					<button className="userbut">Login</button>
-					<button className="userbut">Registrarse</button>
 				</div>
 			</div>
 		);
