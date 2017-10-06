@@ -19,11 +19,11 @@ class Answer extends Component {
         <p>
           {bestAnswer.text}
         </p>
-        <p>Posted by: 
+        <p>Posted by:
           {bestAnswer.poster}
         </p>
         <p>At:
-        {bestAnswer.postedat}
+          {new Date(bestAnswer.postedat).toLocaleString()}
         </p>
       </div>
     );
