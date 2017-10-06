@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Vote from './Vote.jsx'
 import Answer from './Answer.jsx'
-import React from 'react';
 import PropTypes from 'prop-types';
 /**
 Clase para mostrar una pregunta
@@ -38,5 +37,6 @@ Question.PropTypes={
 	title: PropTypes.string.isRequired,
 	poster: PropTypes.string.isRequired,
 	votes: PropTypes.number.isRequired,
-}),
+};
+
 export default Question;
