@@ -15,7 +15,8 @@ class Question extends Component{
 
 	render(){
 		return(
-				<table className="question">
+			<table className="question">
+				<tbody>
 					<tr>
 						<td><Vote votes={this.props.question.votes}/></td>
 						<td><b>{this.props.question.title}</b></td>
@@ -32,8 +33,9 @@ class Question extends Component{
 						<td></td>
 						<td><Answer answers={this.props.question.answers}/></td>
 					</tr>
-				</table>
-			);
+				</tbody>
+			</table>
+		);
 	}
 }
 
