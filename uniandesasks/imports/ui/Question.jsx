@@ -9,24 +9,20 @@ class Question extends Component{
 		super(props);
 	}
 
-	// transformDate(dateInMilis){
-	// 	return (new Date(dateInMilis).toLocaleString())
-	// }
-
 	render(){
 		return(
 			<table className="question">
 				<tbody>
 					<tr>
-						<td><Vote votes={this.props.question.votes}/></td>
+						<td>{this.props.question.theme}</td>
 						<td><b>{this.props.question.title}</b></td>
 					</tr>
 					<tr>
-						<td></td>
+						<td><Vote votes={this.props.question.votes}/></td>
 						<td>{this.props.question.text}</td>
 					</tr>
 					<tr>
-						<td>{this.props.question.postedat}</td>
+						<td>{new Date(this.props.question.postedat).toLocaleString()}</td>
 						<td><p>{this.props.question.poster}</p></td>
 					</tr>
 					<tr>
