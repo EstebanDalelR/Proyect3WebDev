@@ -1,0 +1,15 @@
+.userbutton{    
+	background-color: rgb(48, 52, 129);
+    width: 100%;
+    border: 0px;
+    color: white;
+}
+
+.login-link-text{
+	text-decoration: none !important;
+}
+
+.accounts-dialog{
+	top:30px !important;
+	left:-130px !important;
+}

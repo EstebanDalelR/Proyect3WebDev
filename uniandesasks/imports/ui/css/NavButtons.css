@@ -1,0 +1,16 @@
+.navbutton{
+	margin-left: 10px;
+    margin-right: 10px;
+    width: 90%;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: #313581;
+    border-style: solid;
+    border-width: 0px;
+    border-bottom-width: 3px;
+}
+
+.navbutton:hover{
+	background-color:#313581; 
+	color:white;
+}
