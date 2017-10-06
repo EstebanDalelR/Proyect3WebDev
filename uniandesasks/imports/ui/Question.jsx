@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Vote from './Vote.jsx'
 import Answer from './Answer.jsx'
+import PropTypes from 'prop-types';
 /**
-Clase para mosdivar una pregunta
+Clase para mostrar una pregunta
 **/
 class Question extends Component{
 	constructor(props){
@@ -31,6 +32,11 @@ class Question extends Component{
 		);
 	}
 }
-
+Question.PropTypes={
+  theme: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	poster: PropTypes.string.isRequired,
+	votes: PropTypes.number.isRequired,
+};
 
 export default Question;
