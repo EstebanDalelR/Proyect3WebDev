@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Vote from './Vote.jsx'
 
 class Answer extends Component {
 
@@ -15,16 +16,22 @@ class Answer extends Component {
   render() {
     var bestAnswer = this.findBestAnswer();
     return (
-      <div>
-        <p><b>R:</b>
-          {bestAnswer.text}
-        </p>
-        <p><b>Response by:</b>
-          {bestAnswer.poster}
-        </p>
-        <p><b>At:</b>
-          {new Date(bestAnswer.postedat).toLocaleString()}
-        </p>
+      <div className= "row rounded border">
+        <div className= "col-2"><Vote votes={bestAnswer.votes}/></div>
+        <div className="">
+          <p>
+            <b>R:</b>
+            {bestAnswer.text}
+          </p>
+          <p>
+            <b>Response by:</b>
+            {bestAnswer.poster}
+          </p>
+          <p>
+            <b>At:</b>
+            {new Date(bestAnswer.postedat).toLocaleString()}
+          </p>
+        </div>
       </div>
     );
   }

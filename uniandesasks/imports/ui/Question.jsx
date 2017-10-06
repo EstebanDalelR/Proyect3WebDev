@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Vote from './Vote.jsx'
 import Answer from './Answer.jsx'
 /**
-Clase para mostrar una pregunta
+Clase para mosdivar una pregunta
 **/
 class Question extends Component{
 	constructor(props){
@@ -11,27 +11,23 @@ class Question extends Component{
 
 	render(){
 		return(
-			<table className="container-fluid table-responsive border border-secondary border-top-0 border-right-0 border-left-0 rounded">
-				<tbody>
-					<tr className="table-primary">
-						<td >{this.props.question.theme}</td>
-						<td><b>{this.props.question.title}</b></td>
-					</tr>
-					<tr>
-						<td><Vote votes={this.props.question.votes}/></td>
-						<td>{this.props.question.text}</td>
-					</tr>
-					<tr>
-						<td><b>At: </b>
-						{new Date(this.props.question.postedat).toLocaleString()}</td>
-						<td><p><b>Published by:</b>{this.props.question.poster}</p></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><Answer answers={this.props.question.answers}/></td>
-					</tr>
-				</tbody>
-			</table>
+			<div className="container-fluid  rounded border border-secondary">
+				<div className= "row">
+					<div className= "col-2">{this.props.question.theme}</div>
+					<div><b>{this.props.question.title}</b></div>
+				</div>
+
+				<div className= "row">
+					<div className= "col-2"><Vote votes={this.props.question.votes}/></div>
+					<div>{this.props.question.text}</div>
+				</div>
+
+				<div className= "row">
+					<div className= "col-2"><p><b>By:</b>{this.props.question.poster}</p></div>
+					<div><b>At: </b>{new Date(this.props.question.postedat).toLocaleString()}</div>
+				</div>
+				<Answer answers={this.props.question.answers}/>
+			</div>
 		);
 	}
 }
