@@ -11,7 +11,7 @@ class QuestionList extends Component{
 		this.state = {
 			questions: [
 				{
-					"_id":"132123vasvasfvas",
+					"_id":"132123vasvasfvaas",
 					"poster": "estebandalelr",
 					"postedat": 24134315345,
 					"theme": "physics",
@@ -35,7 +35,7 @@ class QuestionList extends Component{
 					]
 				},
 				{
-					"_id":"132123vasvasfvas",
+					"_id":"132123vasvdasfvas",
 					"poster": "estebandalelr",
 					"postedat": 24134315345,
 					"theme": "bio",
@@ -59,7 +59,7 @@ class QuestionList extends Component{
 					]
 				},
 				{
-					"_id":"22222vasvasfvas",
+					"_id":"22222vasvas3fvas",
 					"poster": "otro",
 					"postedat": 1507260551496,
 					"theme": "Math",
@@ -95,7 +95,7 @@ class QuestionList extends Component{
 		this.sortQuestions();
 		return(
 			this.state.questions.map((q)=>{
-				return <Question key={q.key} question={q}/>
+				return <Question key={q._id} question={q}/>
 			})
 		);
 	}
@@ -103,8 +103,8 @@ class QuestionList extends Component{
 	render(){
 		return(
 			<div className="container container-fluid">
-				<h1>Frequently Asked Questions</h1>
-				<div className="">
+				<h1>Un amigo de Seneca pregunta:</h1>
+				<div className="container container-fluid">
 					{this.renderQuestions()}
 				</div>
 			</div>
