@@ -16,13 +16,13 @@ class Answer extends Component {
     var bestAnswer = this.findBestAnswer();
     return (
       <div>
-        <p>
+        <p><b>R:</b>
           {bestAnswer.text}
         </p>
-        <p>Posted by:
+        <p><b>Response by:</b>
           {bestAnswer.poster}
         </p>
-        <p>At:
+        <p><b>At:</b>
           {new Date(bestAnswer.postedat).toLocaleString()}
         </p>
       </div>

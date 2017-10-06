@@ -11,10 +11,10 @@ class Question extends Component{
 
 	render(){
 		return(
-			<table className="question">
+			<table className="container-fluid table-responsive border border-secondary border-top-0 border-right-0 border-left-0 rounded">
 				<tbody>
-					<tr>
-						<td>{this.props.question.theme}</td>
+					<tr className="table-primary">
+						<td >{this.props.question.theme}</td>
 						<td><b>{this.props.question.title}</b></td>
 					</tr>
 					<tr>
@@ -22,8 +22,9 @@ class Question extends Component{
 						<td>{this.props.question.text}</td>
 					</tr>
 					<tr>
-						<td>{new Date(this.props.question.postedat).toLocaleString()}</td>
-						<td><p>{this.props.question.poster}</p></td>
+						<td><b>At: </b>
+						{new Date(this.props.question.postedat).toLocaleString()}</td>
+						<td><p><b>Published by:</b>{this.props.question.poster}</p></td>
 					</tr>
 					<tr>
 						<td></td>

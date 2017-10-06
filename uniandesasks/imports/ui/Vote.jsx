@@ -20,9 +20,11 @@ class Vote extends Component{
 	render(){
 		return(
 				<div>
-          <button className='VoteUp btn-group-vertical'>Up</button>
-          <p>{this.props.votes}</p>
-          <button className='VoteDown btn-group-vertical'>Down</button>
+          <button className='btn-sm btn-success btn-group-vertical '>
+						/\
+					</button>
+          <p className='m-0'>{this.props.votes}</p>
+          <button className='btn-sm btn-danger btn-group-vertical'>\/</button>
         </div>
 			);
 	}
