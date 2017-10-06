@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import 'bootstrap';
 
 
 
@@ -37,9 +36,11 @@ class App extends Component{
 
 
 export default AppContainer = createContainer((props) => {
+	if(Meteor.user()){
+    	Meteor.subscribe('user');
+	}
 	return {
 		_id: Meteor.userId(),
-		currentUser: (Meteor.user())?((Meteor.user().profile)?Meteor.user().profile:{name:Meteor.user().username}):{},
-		userServices: (Meteor.user())?Meteor.user().services.google:{},
+		currentUser: (Meteor.user())?Meteor.user():{},
 	};
 }, App);

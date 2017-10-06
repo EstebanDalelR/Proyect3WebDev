@@ -14,7 +14,7 @@ class NavBar extends Component{
 		return(
 			<div className="navBar">
 				<div className="logo col-md-4">
-					<img src="../../img/logo.png" alt="SenecAsks logo"/>
+					<img src="../img/logo.png" alt="SenecAsks logo"/>
 				</div>
 				<div className="searchbox col-md-6">
 					<SearchBox></SearchBox>	
