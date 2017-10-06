@@ -20,18 +20,10 @@
     margin-left: 5px;
 }
 
-.userbut{
-	margin-left: 10px;
-    height: 35px;
-    border-radius: 5px;
-    width: 100px;
-    background-color: yellow;
-}
-
-.buttons{
+.signinbutton{
 	display: inline-block;
-    vertical-align: top;
     float:right;
+    top:5px;
 }
 
 .top40{
@@ -47,6 +39,5 @@
 }
 
 .searchbox{
-	float: right;
-	display:inline;
+	display:inline-block;
 }
