@@ -12,8 +12,8 @@ class StaticSideBar extends Component{
 	renderServices(){
 		return(
 				<div>
-					<img className="pic" src={this.props.userServices.picture} alt=""/>
-					<p className="email">{this.props.userServices.email}</p>
+					<img className="pic" src={this.props.currentUser.picture} alt=""/>
+					<p className="email">{this.props.currentUser.email}</p>
 				</div>
 			);
 	}
@@ -23,7 +23,9 @@ class StaticSideBar extends Component{
 			<div className="sideBar">
 				<div className="profile">
 					<h3>{(this.props.currentUser)?this.props.currentUser.name:''}</h3>
-					{(this.props.userServices)?this.renderServices():''}
+					{(this.props.currentUser.isGoogle)?this.renderServices():''}
+					<p>{(this.props.currentUser.questions !== undefined)?'#Preguntas: '+this.props.currentUser.questions:''}</p>
+					<p>{(this.props.currentUser.answers !== undefined)?'#Respuestas: '+this.props.currentUser.answers:''}</p>
 				</div>
 				<NavButtons></NavButtons>
 			</div>
