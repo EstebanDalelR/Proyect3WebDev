@@ -103,8 +103,8 @@ class QuestionList extends Component{
 	render(){
 		return(
 			<div className="container container-fluid">
-				<h1>Frequently Asked Questions</h1>
-				<div className="">
+				<h1>Un amigo de Seneca pregunta:</h1>
+				<div className="container container-fluid">
 					{this.renderQuestions()}
 				</div>
 			</div>
