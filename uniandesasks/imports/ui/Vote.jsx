@@ -21,7 +21,7 @@ class Vote extends Component{
 		return(
 				<div>
           <button className='VoteUp btn-group-vertical'>Up</button>
-          <p>{this.props.question.votes}</p>
+          <p>{this.props.votes}</p>
           <button className='VoteDown btn-group-vertical'>Down</button>
         </div>
 			);
