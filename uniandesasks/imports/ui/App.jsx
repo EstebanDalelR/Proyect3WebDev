@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import 'bootstrap';
 
 import NavBar from './NavBar.jsx';
 import QuestionList from './QuestionList.jsx';
@@ -27,6 +28,7 @@ class App extends Component{
 	}
 }
 
+
 export default AppContainer = createContainer((props) => {
 	return {
 		_id: Meteor.userId(),
@@ -34,3 +36,4 @@ export default AppContainer = createContainer((props) => {
 		userServices: (Meteor.user())?Meteor.user().services.google:{},
 	};
 }, App);
+
