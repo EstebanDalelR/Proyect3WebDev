@@ -33,11 +33,39 @@ class QuestionList extends Component{
               "votes": -3
             }
           ]
+        },
+				{
+          "_id":"22222vasvasfvas",
+          "poster": "otro",
+          "postedat": 1507260551496,
+          "theme": "Math",
+          "title": "why is it so harrrd?",
+          "text": "I never undertsnd shit",
+          "votes": 4,
+          "answers":
+          [
+            {
+              "poster": "estebandalelr",
+              "postedat": 1507260551496,
+              "text": "Una respuesta a la matematica",
+              "votes": 0
+            },
+            {
+              "poster": "samuelbaq",
+              "postedat": 1507260551496,
+              "text": "no",
+              "votes": -3
+            }
+          ]
         }
 			]
 		}
 	}
-
+	sortQuestions(){
+		for (var i = 0; i < this.state.questions.length; i++) {
+			this.state.questions[i]
+		}
+	}
 	renderQuestions(){
 		return(
 			this.state.questions.map((q)=>{
