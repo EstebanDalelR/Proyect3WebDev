@@ -24,3 +24,10 @@ Accounts.onCreateUser((options, user) => {
   // Don't forget to return the new user object at the end!
   return user;
 });
+
+Meteor.publish('user',
+  function () {
+    return Meteor.users.find(this.userId,
+      {fields: {name: 1,email: 1,picture: 1,isGoogle: 1,questions: 1,answers: 1}});
+  }
+);

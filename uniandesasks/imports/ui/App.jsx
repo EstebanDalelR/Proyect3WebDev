@@ -29,7 +29,9 @@ class App extends Component{
 
 
 export default AppContainer = createContainer((props) => {
-	console.log(Meteor.user());
+	if(Meteor.user()){
+    	Meteor.subscribe('user');
+	}
 	return {
 		_id: Meteor.userId(),
 		currentUser: (Meteor.user())?Meteor.user():{},

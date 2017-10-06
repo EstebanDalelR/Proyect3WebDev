@@ -24,8 +24,8 @@ class StaticSideBar extends Component{
 				<div className="profile">
 					<h3>{(this.props.currentUser)?this.props.currentUser.name:''}</h3>
 					{(this.props.currentUser.isGoogle)?this.renderServices():''}
-					<p>{'#Preguntas: '+this.props.currentUser.questions}</p>
-					<p>{'#Respuestas: '+this.props.currentUser.answers}</p>
+					<p>{(this.props.currentUser.questions !== undefined)?'#Preguntas: '+this.props.currentUser.questions:''}</p>
+					<p>{(this.props.currentUser.answers !== undefined)?'#Respuestas: '+this.props.currentUser.answers:''}</p>
 				</div>
 				<NavButtons></NavButtons>
 			</div>
