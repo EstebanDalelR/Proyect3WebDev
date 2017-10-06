@@ -1,0 +1,24 @@
+{
+  "_id":"132123vasvasfvas",
+  "poster": "estebandalelr",
+  "postedat": 24134315345,
+  "theme": "physics",
+  "title": "why is the sky blue?",
+  "text": "yes",
+  "votes": 0,
+  "answers":
+  [
+    {
+      "poster": "estebandalelr",
+      "postedat": 24134315345,
+      "text": "yes",
+      "votes": 0
+    },
+    {
+      "poster": "samuelbaq",
+      "postedat": 24134315345,
+      "text": "no",
+      "votes": -3
+    }
+  ]
+}
