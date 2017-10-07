@@ -32,12 +32,12 @@ class Question extends Component{
 		);
 	}
 }
+
 Question.PropTypes={
   theme: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	poster: PropTypes.string.isRequired,
 	votes: PropTypes.number.isRequired,
-	selectQuestion: PropTypes.func.isRequired
 };
 
 export default Question;
