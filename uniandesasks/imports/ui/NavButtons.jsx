@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import PropTypes from 'prop-types';
+
 import './css/NavButtons.css';
 
 class NavButtons extends Component{
@@ -10,7 +12,7 @@ class NavButtons extends Component{
 	render(){
 		return(
 			<div className="navButtons">
-				<button className="navbutton">1</button>
+				<button className="navbutton" onClick={()=>{this.props.returnHome()}}>Inicio</button>
 				<button className="navbutton">2</button>
 				<button className="navbutton">3</button>
 				<button className="navbutton">4</button>
@@ -19,5 +21,9 @@ class NavButtons extends Component{
 	}
 
 }
+
+NavButtons.PropTypes={
+  returnHome: PropTypes.func.isRequired
+};
 
 export default NavButtons;

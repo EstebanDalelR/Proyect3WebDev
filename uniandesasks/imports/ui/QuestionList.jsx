@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import Question from './Question.jsx';
 
 /**
@@ -85,6 +87,11 @@ class QuestionList extends Component{
 			]
 		}
 	}
+
+	selectQuestion(quest){
+		this.props.selectQuestion(quest);
+	}
+
 	sortQuestions(){
 		this.state.questions.sort(function(a, b) {
 			return parseInt(b.votes) - parseInt(a.votes);
@@ -95,7 +102,7 @@ class QuestionList extends Component{
 		this.sortQuestions();
 		return(
 			this.state.questions.map((q)=>{
-				return <Question key={q._id} question={q}/>
+				return <Question key={q._id} question={q} selectQuestion={this.selectQuestion.bind(this)}/>
 			})
 		);
 	}
@@ -110,6 +117,10 @@ class QuestionList extends Component{
 			</div>
 		);
 	}
+}
+
+QuestionList.PropTypes={
+	selectQuestion: PropTypes.func.isRequired
 }
 
 export default QuestionList;
