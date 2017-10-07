@@ -42,6 +42,6 @@ export default AppContainer = createContainer((props) => {
 	return {
 		_id: Meteor.userId(),
 		currentUser: (Meteor.user())?Meteor.user():{},
-		questions: Questions.find({}).fetch(),
+		questions: Questions.find({}, { $sort : { votes : -1, answers: 1 } }).fetch(),
 	};
 }, App);

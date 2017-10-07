@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Question from './Question.jsx';
 import {Editor, EditorState, RichUtils} from "draft-js";
+import ReactDOM from 'react-dom';
 
 
 import './css/draft.css';
@@ -37,20 +38,30 @@ class QuestionList extends Component{
 }
 
 //Question methods
-	sortQuestions(){
-		this.props.questions.sort(function(a, b) {
-			return parseInt(b.votes) - parseInt(a.votes);
-		});
-	}
+
 
 	renderQuestions(){
-		this.sortQuestions();
+
 		return(
 			this.props.questions.map((q)=>{
 				return <Question key={q._id} question={q}/>
 			})
 		);
 	}
+	handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
+    Questions.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+  }
 
 	render(){
 
@@ -59,12 +70,19 @@ class QuestionList extends Component{
 				<h1>Un amigo de Seneca pregunta:</h1>
 				<div className=" rounded border border-secondary">
 					<h4>Escribe aquí tu pregunta:</h4>
-
+					<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="¿Qué quieres preguntar?"
+            />
+          </form>
 					<h4>Explica tu pregunta</h4>
 					<Editor id="DraftEditor-root"
 						editorState={this.state.editorState}
 						handleKeyCommand={this.handleKeyCommand}
 						onChange={this.onChange}
+						placeholder="¿Quieres agregar algo?"
 					/>
 				</div>
 				<div className="container container-fluid">
