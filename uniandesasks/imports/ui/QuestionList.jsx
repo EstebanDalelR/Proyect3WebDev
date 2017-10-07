@@ -20,7 +20,6 @@ class QuestionList extends Component{
 		};
 		this.onChange = (editorState) => this.setState({editorState});
 	}
-<<<<<<< HEAD
 
 	selectQuestion(quest){
 		this.props.selectQuestion(quest);
@@ -30,57 +29,50 @@ class QuestionList extends Component{
 		this.state.questions.sort(function(a, b) {
 			return parseInt(b.votes) - parseInt(a.votes);
 		});
-=======
+	}
+
 	//Editor methods
-	_onBoldClick() {
+	_onBoldClick(){
 		this.onChange(RichUtils.toggleInlineStyle(
 			this.state.editorState,
 			"BOLD"
 		));
->>>>>>> b46e1e6b52f7cd9d50febb25751f3df3cc5dba45
 	}
 
 	handleKeyCommand = (command) => {
-  const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+	  const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
-  if (newState) {
-    this.onChange(newState);
-    return 'handled';
-  }
+	  if (newState) {
+	    this.onChange(newState);
+	    return 'handled';
+	  }
 
-  return 'not-handled';
-}
+	  return 'not-handled';
+	}
 
-//Question methods
-
-
+	//Question methods
 	renderQuestions(){
-
 		return(
-<<<<<<< HEAD
 			this.state.questions.map((q)=>{
 				return <Question key={q._id} question={q} selectQuestion={this.selectQuestion.bind(this)}/>
-=======
-			this.props.questions.map((q)=>{
-				return <Question key={q._id} question={q}/>
->>>>>>> b46e1e6b52f7cd9d50febb25751f3df3cc5dba45
-			})
-		);
+			}
+		));
 	}
+
 	handleSubmit(event) {
-    event.preventDefault();
+	    event.preventDefault();
 
-    // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+	    // Find the text field via the React ref
+	    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-    Questions.insert({
-      text,
-      createdAt: new Date(), // current time
-    });
+	    Questions.insert({
+	      text,
+	      createdAt: new Date(), // current time
+	    });
 
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
-  }
+	    // Clear form
+	    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+	  }
 
 	render(){
 
