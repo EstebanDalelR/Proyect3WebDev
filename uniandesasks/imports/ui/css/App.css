@@ -2,3 +2,9 @@
 	margin-left: 300px !important;
 	max-width: 70%;
 }
+#render-target > div > div.container.top40.main > div > div.rounded.border.border-secondary > div > div > div > div > div > div{
+  background: lightgray;
+	border-color: red;
+  border-radius: .3em;
+  padding: 1em;
+}

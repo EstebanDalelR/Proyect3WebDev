@@ -9,7 +9,7 @@ class AddAnswer extends Component{
 	render(){
 		return(
 			<div>
-				I'll soon add an answer
+				
 			</div>
 		);
 	}
