@@ -18,7 +18,7 @@ class Vote extends Component{
   }
 
 	render(){
-		var buttonStyle = {
+		let buttonStyle = {
   	padding: 2,
 		};
 		return(

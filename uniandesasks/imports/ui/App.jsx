@@ -26,7 +26,7 @@ class App extends Component{
 
 					<div className="container top40 main">
 
-						<QuestionList/>
+						<QuestionList questions={this.props.questions}/>
 
 					</div>
 				</div>
@@ -42,5 +42,6 @@ export default AppContainer = createContainer((props) => {
 	return {
 		_id: Meteor.userId(),
 		currentUser: (Meteor.user())?Meteor.user():{},
+		questions: Questions.find({}).fetch(),
 	};
 }, App);
