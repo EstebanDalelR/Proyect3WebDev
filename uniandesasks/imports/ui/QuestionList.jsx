@@ -1,109 +1,90 @@
 import React, {Component} from 'react';
 import Question from './Question.jsx';
+import {Editor, EditorState, RichUtils} from "draft-js";
+import ReactDOM from 'react-dom';
 
+
+import './css/draft.css';
 /**
 Clase para mostrar una lista de preguntas
 **/
 class QuestionList extends Component{
 	constructor(props){
 		super(props);
-
 		this.state = {
+			editorState: EditorState.createEmpty(),
 			questions: [
-				{
-					"_id":"132123vasvasfvaas",
-					"poster": "estebandalelr",
-					"postedat": 24134315345,
-					"theme": "physics",
-					"title": "why is the sky blue?",
-					"text": "yes",
-					"votes": 0,
-					"answers":
-					[
-						{
-							"poster": "estebandalelr",
-							"postedat": 24134315345,
-							"text": "Una respuesta al cielo",
-							"votes": 0
-						},
-						{
-							"poster": "samuelbaq",
-							"postedat": 24134315345,
-							"text": "no",
-							"votes": -3
-						}
-					]
-				},
-				{
-					"_id":"132123vasvdasfvas",
-					"poster": "estebandalelr",
-					"postedat": 24134315345,
-					"theme": "bio",
-					"title": "why is the whale blue?",
-					"text": "yes",
-					"votes": 7,
-					"answers":
-					[
-						{
-							"poster": "estebandalelr",
-							"postedat": 24134315345,
-							"text": "Una respuesta al cielo",
-							"votes": 0
-						},
-						{
-							"poster": "samuelbaq",
-							"postedat": 24134315345,
-							"text": "no",
-							"votes": -3
-						}
-					]
-				},
-				{
-					"_id":"22222vasvas3fvas",
-					"poster": "otro",
-					"postedat": 1507260551496,
-					"theme": "Math",
-					"title": "why is it so harrrd?",
-					"text": "I never undertsnd shit",
-					"votes": 4,
-					"answers":
-					[
-						{
-							"poster": "estebandalelr",
-							"postedat": 1507260551496,
-							"text": "Una respuesta a la matematica",
-							"votes": 0
-						},
-						{
-							"poster": "samuelbaq",
-							"postedat": 1507260551496,
-							"text": "no",
-							"votes": -3
-						}
-					]
-				}
 			]
-		}
+		};
+		this.onChange = (editorState) => this.setState({editorState});
 	}
-	sortQuestions(){
-		this.state.questions.sort(function(a, b) {
-			return parseInt(b.votes) - parseInt(a.votes);
-		});
+	//Editor methods
+	_onBoldClick() {
+		this.onChange(RichUtils.toggleInlineStyle(
+			this.state.editorState,
+			"BOLD"
+		));
 	}
+
+	handleKeyCommand = (command) => {
+  const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+
+  if (newState) {
+    this.onChange(newState);
+    return 'handled';
+  }
+
+  return 'not-handled';
+}
+
+//Question methods
+
 
 	renderQuestions(){
-		this.sortQuestions();
+
 		return(
-			this.state.questions.map((q)=>{
+			this.props.questions.map((q)=>{
 				return <Question key={q._id} question={q}/>
 			})
 		);
 	}
+	handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
+    Questions.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+  }
 
 	render(){
+
 		return(
 			<div className="container container-fluid">
 				<h1>Un amigo de Seneca pregunta:</h1>
+				<div className=" rounded border border-secondary">
+					<h4>Escribe aquí tu pregunta:</h4>
+					<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="¿Qué quieres preguntar?"
+            />
+          </form>
+					<h4>Explica tu pregunta</h4>
+					<Editor id="DraftEditor-root"
+						editorState={this.state.editorState}
+						handleKeyCommand={this.handleKeyCommand}
+						onChange={this.onChange}
+						placeholder="¿Quieres agregar algo?"
+					/>
+				</div>
 				<div className="container container-fluid">
 					{this.renderQuestions()}
 				</div>
