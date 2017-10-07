@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import NavButtons from './NavButtons.jsx';
 
@@ -18,6 +19,10 @@ class StaticSideBar extends Component{
 			);
 	}
 
+	returnHome(){
+		this.props.returnHome();
+	}
+
 	render(){
 		return(
 			<div className="sideBar">
@@ -27,11 +32,15 @@ class StaticSideBar extends Component{
 					<p>{(this.props.currentUser.questions !== undefined)?'#Preguntas: '+this.props.currentUser.questions:''}</p>
 					<p>{(this.props.currentUser.answers !== undefined)?'#Respuestas: '+this.props.currentUser.answers:''}</p>
 				</div>
-				<NavButtons></NavButtons>
+				<NavButtons returnHome={this.returnHome.bind(this)}></NavButtons>
 			</div>
 		);
 	}
 
+}
+
+StaticSideBar.PropTypes={
+	returnHome: PropTypes.func.isRequired
 }
 
 export default StaticSideBar;

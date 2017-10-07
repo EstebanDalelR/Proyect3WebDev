@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import Question from './Question.jsx';
 import {Editor, EditorState, RichUtils} from "draft-js";
 import ReactDOM from 'react-dom';
@@ -18,12 +20,24 @@ class QuestionList extends Component{
 		};
 		this.onChange = (editorState) => this.setState({editorState});
 	}
+<<<<<<< HEAD
+
+	selectQuestion(quest){
+		this.props.selectQuestion(quest);
+	}
+
+	sortQuestions(){
+		this.state.questions.sort(function(a, b) {
+			return parseInt(b.votes) - parseInt(a.votes);
+		});
+=======
 	//Editor methods
 	_onBoldClick() {
 		this.onChange(RichUtils.toggleInlineStyle(
 			this.state.editorState,
 			"BOLD"
 		));
+>>>>>>> b46e1e6b52f7cd9d50febb25751f3df3cc5dba45
 	}
 
 	handleKeyCommand = (command) => {
@@ -43,8 +57,13 @@ class QuestionList extends Component{
 	renderQuestions(){
 
 		return(
+<<<<<<< HEAD
+			this.state.questions.map((q)=>{
+				return <Question key={q._id} question={q} selectQuestion={this.selectQuestion.bind(this)}/>
+=======
 			this.props.questions.map((q)=>{
 				return <Question key={q._id} question={q}/>
+>>>>>>> b46e1e6b52f7cd9d50febb25751f3df3cc5dba45
 			})
 		);
 	}
@@ -91,6 +110,10 @@ class QuestionList extends Component{
 			</div>
 		);
 	}
+}
+
+QuestionList.PropTypes={
+	selectQuestion: PropTypes.func.isRequired
 }
 
 export default QuestionList;

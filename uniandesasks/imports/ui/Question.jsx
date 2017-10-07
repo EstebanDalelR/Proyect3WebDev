@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Vote from './Vote.jsx'
-import Answer from './Answer.jsx'
+import Vote from './Vote.jsx';
+import Answer from './Answer.jsx';
 import PropTypes from 'prop-types';
 /**
 Clase para mostrar una pregunta
@@ -15,7 +15,7 @@ class Question extends Component{
 			<div className="container-fluid  rounded border border-secondary">
 				<div className= "row">
 					<div className= "col-2">{this.props.question.theme}</div>
-					<div><b>{this.props.question.title}</b></div>
+					<button onClick={()=>{this.props.selectQuestion(this.props.question)}}><b>{this.props.question.title}</b></button>
 				</div>
 
 				<div className= "row">
@@ -32,6 +32,7 @@ class Question extends Component{
 		);
 	}
 }
+
 Question.PropTypes={
   theme: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
