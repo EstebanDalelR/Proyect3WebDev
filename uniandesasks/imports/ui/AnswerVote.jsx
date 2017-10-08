@@ -4,7 +4,7 @@ import {Questions} from '../../imports/api/Questions.js';
 /**
 Clase para mostrar los botones de voto y puntaje de una pregunta
 **/
-class Vote extends Component{
+class AnswerVote extends Component{
 	constructor(props){
 		super(props);
 	}
@@ -44,4 +44,4 @@ class Vote extends Component{
 }
 
 
-export default Vote;
+export default AnswerVote;

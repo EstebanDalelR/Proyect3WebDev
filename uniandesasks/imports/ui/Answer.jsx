@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Vote from './Vote.jsx'
+import AnswerVote from './AnswerVote.jsx'
 
 class Answer extends Component {
 
@@ -19,7 +19,7 @@ class Answer extends Component {
     var bestAnswer = this.findBestAnswer();
     return (
       <div className= "row rounded border">
-        <div className= "col-2"><Vote votes={bestAnswer.votes}/></div>
+        <div className= "col-2"><AnswerVote votes={bestAnswer.votes}/></div>
         <div className="">
           <p>
             <b>R:</b>

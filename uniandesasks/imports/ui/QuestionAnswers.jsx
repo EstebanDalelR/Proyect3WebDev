@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
-import Vote from './Vote.jsx';
+import QuestionVote from './QuestionVote.jsx';
 
 class QuestionAnswers extends Component{
 	constructor(props){
@@ -24,7 +24,7 @@ class QuestionAnswers extends Component{
 				</div>
 
 				<div className= "row">
-					<div className= "col-2"><Vote votes={this.props.questionSelected.votes}/></div>
+					<div className= "col-2"><QuestionVote votes={this.props.questionSelected.votes}/></div>
 					<div>{this.props.questionSelected.text}</div>
 				</div>
 
