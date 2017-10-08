@@ -39,6 +39,8 @@ class QuestionList extends Component{
 		var postedat =Date.now();
 		var votes = 0;
 		var answers = [];
+		var userId = Meteor.userId();
+		var poster =  Meteor.user().name;
 		Questions.insert({
 			title,
 			postedat,
@@ -46,11 +48,13 @@ class QuestionList extends Component{
 			votes,
 			answers,
 			text,
+			userId,
+			poster,
 		});
 		alert("Pregunta subida")
 
 		Meteor.call('users.questions', {
-		  userId: Meteor.userId()
+		  userId: userId
 		}, (err, res) => {
 		  if (err) {
 		    alert(err);

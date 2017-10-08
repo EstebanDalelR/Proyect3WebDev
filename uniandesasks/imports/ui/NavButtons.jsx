@@ -13,9 +13,6 @@ class NavButtons extends Component{
 		return(
 			<div className="navButtons">
 				<button className="navbutton" onClick={()=>{this.props.returnHome()}}>Inicio</button>
-				<button className="navbutton">2</button>
-				<button className="navbutton">3</button>
-				<button className="navbutton">4</button>
 			</div>
 		);
 	}
