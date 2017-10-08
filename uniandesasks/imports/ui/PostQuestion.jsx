@@ -21,7 +21,8 @@ class PostQuestion extends Component{
 		var answers = [];
 		var userId = Meteor.userId();
 		var poster =  Meteor.user().name;
-		Questions.insert({
+
+		Meteor.call('questions.postQuestion',{
 			title,
 			postedat,
 			theme,
@@ -30,14 +31,20 @@ class PostQuestion extends Component{
 			text,
 			userId,
 			poster,
+		}, (err, res) => {
+		  if (err) {
+		    console.log(err);
+		  } else {
+		    // success!
+		  }
 		});
-		alert("Pregunta subida")
+		//alert("Pregunta subida")
 
 		Meteor.call('users.questions', {
 		  userId: userId
 		}, (err, res) => {
 		  if (err) {
-		    alert(err);
+		    console.log(err);
 		  } else {
 		    // success!
 		  }

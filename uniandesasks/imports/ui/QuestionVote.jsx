@@ -9,18 +9,28 @@ class QuestionVote extends Component{
 		super(props);
 	}
 
-  castVotePositive(event){
-		var votesToCast=1+this.props.votes;
-		Questions.update(this.props.identifier, {
-      $set: { votes: votesToCast },
-    });
-  }
-	castVoteNegative(event){
-		var votesToCast=this.props.votes-1;
-		Questions.update(this.props.identifier, {
-			$set: { votes: votesToCast },
-		});
+	castVotePositive(event){
+		var vote='up';
+		this.methodVote(vote);
 	}
+
+	castVoteNegative(event){
+		var vote='down';
+		this.methodVote(vote);
+	}
+
+	methodVote(vote){
+		var id=this.props.identifier
+		Meteor.call('questions.vote',{id, vote},
+			(err,res)=>{
+				if(err){
+					console.log(err);
+				}else{
+					//Lo logro
+				}
+			});
+	}
+
 	render(){
 		let buttonStyle = {
   	padding: 2,
