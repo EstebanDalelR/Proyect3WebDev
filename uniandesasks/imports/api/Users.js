@@ -31,3 +31,26 @@ Meteor.publish('user',
       {fields: {name: 1,email: 1,picture: 1,isGoogle: 1,questions: 1,answers: 1}});
   }
 );
+
+Meteor.methods({
+  'users.answers'({ userId }) {
+    new SimpleSchema({
+      userId: { type: String }
+    }).validate({ userId });
+    const user = Meteor.users.findOne(userId);
+    const answers = user.answers +1
+    Meteor.users.update(userId, {
+      $set: { answers: answers }
+    });
+  },
+  'users.questions'({ userId }) {
+    new SimpleSchema({
+      userId: { type: String }
+    }).validate({ userId });
+    const user = Meteor.users.findOne(userId);
+    const questions = user.questions +1
+    Meteor.users.update(userId, {
+      $set: { questions: questions }
+    });
+  }
+});
