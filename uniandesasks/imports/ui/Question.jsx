@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Vote from './Vote.jsx';
+import QuestionVote from './QuestionVote.jsx';
 import Answer from './Answer.jsx';
 import PropTypes from 'prop-types';
 /**
@@ -19,7 +19,7 @@ class Question extends Component{
 				</div>
 
 				<div className= "row">
-					<div className= "col-2"><Vote votes={this.props.question.votes} identifier={this.props.question._id}/></div>
+					<div className= "col-2"><QuestionVote votes={this.props.question.votes} identifier={this.props.question._id}/></div>
 					<div>{this.props.question.text}</div>
 				</div>
 
