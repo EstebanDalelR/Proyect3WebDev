@@ -21,13 +21,10 @@ class App extends Component{
 
 	returnHome(){
 		this.setState(()=>{return{questionSelected:' '}});
-		console.log('return home');
 	}
 
 	selectQuestion(quest){
 		this.setState(()=>{return{questionSelected:quest}});
-		console.log('something selected');
-		console.log(quest);
 	}
 
 	render(){
@@ -52,6 +49,6 @@ export default AppContainer = createContainer((props) => {
 	return {
 		_id: Meteor.userId(),
 		currentUser: (Meteor.user())?Meteor.user():{},
-		questions: Questions.find({}, { $sort : { votes : -1, answers: 1 } }).fetch(),
+		questions: Questions.find({}, { sort : { votes : -1, answers: 1 } }).fetch(),
 	};
 }, App);
