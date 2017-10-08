@@ -10,6 +10,10 @@ class QuestionAnswers extends Component{
 		super(props);
 	}
 
+	questionAnswered(){
+		this.props.questionAnswered();
+	}
+
 	render(){
 		console.log(this.props.questionSelected.answers);
 		return(
@@ -29,7 +33,7 @@ class QuestionAnswers extends Component{
 					<div><b>At: </b>{new Date(this.props.questionSelected.postedat).toLocaleString()}</div>
 				</div>
 				{this.props.questionSelected.answers.map((q, i)=>{return <Answer key={i} answers={[q]}></Answer>})}
-				<AddAnswer></AddAnswer>
+				<AddAnswer/>
 			</div>
 		);
 	}
