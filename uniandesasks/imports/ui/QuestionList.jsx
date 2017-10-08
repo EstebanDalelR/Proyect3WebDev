@@ -60,11 +60,13 @@ class QuestionList extends Component{
 		var postedat =Date.now();
 		var theme = ReactDOM.findDOMNode(this.refs.questionTheme).value.trim();
 		var votes = 0;
+		var answers = [];
 		Questions.insert({
 			text,
 			postedat,
 			theme,
-			votes, // current time
+			votes,
+			answers,// current time
 		});
 
 		// Clear form
