@@ -27,7 +27,9 @@ class Question extends Component{
 					<div className= "col-2"><p><b>By:</b>{this.props.question.poster}</p></div>
 					<div><b>At: </b>{new Date(this.props.question.postedat).toLocaleString()}</div>
 				</div>
-
+				{(this.props.question.answers.legth> 0)?
+				  <Answer answers={this.props.question.answers}/>:<div></div>
+				}
 			</div>
 		);
 	}

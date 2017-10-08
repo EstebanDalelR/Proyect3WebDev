@@ -4,13 +4,15 @@ import Vote from './Vote.jsx'
 class Answer extends Component {
 
   findBestAnswer(){
-    var bestAnswer = this.props.answers[0];
-    for (var i = 1; i < this.props.answers.length; i++) {
-      if(this.props.answers[i].votes>bestAnswer.votes){
-        bestAnswer=this.props.answers[i];
+    if(this.props.answers.length){
+      var bestAnswer = this.props.answers[0];
+      for (var i = 1; i < this.props.answers.length; i++) {
+        if(this.props.answers[i].votes>bestAnswer.votes){
+          bestAnswer=this.props.answers[i];
+        }
       }
+      return bestAnswer;
     }
-    return bestAnswer;
   }
 
   render() {

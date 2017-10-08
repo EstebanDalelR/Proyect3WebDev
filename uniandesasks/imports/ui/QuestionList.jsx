@@ -56,13 +56,13 @@ class QuestionList extends Component{
 		event.preventDefault();
 
 		// Find the text field via the React ref
-		var text = ReactDOM.findDOMNode(this.refs.questionAsked).value.trim();
+		var title = ReactDOM.findDOMNode(this.refs.questionAsked).value.trim();
 		var postedat =Date.now();
 		var theme = ReactDOM.findDOMNode(this.refs.questionTheme).value.trim();
 		var votes = 0;
 		var answers = [];
 		Questions.insert({
-			text,
+			title,
 			postedat,
 			theme,
 			votes,
@@ -103,6 +103,7 @@ class QuestionList extends Component{
 						handleKeyCommand={this.handleKeyCommand}
 						onChange={this.onChange}
 						placeholder="¿Quieres agregar algo?"
+						ref="questionText"
 					/>
 				</div>
 				<div className="container container-fluid">
