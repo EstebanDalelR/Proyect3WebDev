@@ -34,7 +34,8 @@ class QuestionAnswers extends Component{
 				</div>
 
 				{this.props.questionSelected.answers.map((q, i)=>{return <Answer key={i} answers={[q]}/>})}
-				<AddAnswer identifier={this.props.questionSelected._id}/>
+				
+				{(Meteor.user())?<AddAnswer identifier={this.props.questionSelected._id}/>:<div>Debes estar registrado para responder</div>}
 
 			</div>
 		);

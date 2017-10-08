@@ -17,17 +17,30 @@ class AddAnswer extends Component{
 		var text = ReactDOM.findDOMNode(this.refs.answerText).value.trim();
 		var postedat =Date.now();
 		var votes = 0;
-		var answers = { text: text, postedat:postedat, votes:votes };
+		var userId = Meteor.userId();
+		var poster = Meteor.user().name;
+		var answers = { text: text, postedat:postedat, votes:votes, poster:poster, userId:userId};
 		Questions.update(
 			this.props.identifier, {
 			$push: {answers}
 
+		});
+
+		Meteor.call('users.answers', {
+		  userId: userId
+		}, (err, res) => {
+		  if (err) {
+		    alert(err);
+		  } else {
+		    // success!
+		  }
 		});
 		alert("Respuesta subida, gracias!")
 
 		// Clear form
 		ReactDOM.findDOMNode(this.refs.answerText).value = '';
 	}
+
 	render(){
 		return(
 			<div>
@@ -39,7 +52,7 @@ class AddAnswer extends Component{
 				/>
 			<button className='btn-primary btn-lg'
 				onClick={this.handleSubmit.bind(this)}>
-				Preguntar
+				Responder
 			</button>
 			</div>
 		);
