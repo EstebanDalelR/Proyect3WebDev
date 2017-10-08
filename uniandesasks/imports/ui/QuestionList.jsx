@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {Editor, EditorState, RichUtils, CSS} from "draft-js";
 
 import Question from './Question.jsx';
 
@@ -13,37 +12,13 @@ Clase para mostrar una lista de preguntas
 class QuestionList extends Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			editorState: EditorState.createEmpty(),
-		};
-		this.onChange = (editorState) => this.setState({editorState});
+	
 	}
 
 	selectQuestion(quest){
 		this.props.selectQuestion(quest);
 	}
 
-	//Editor methods
-	handleKeyCommand = (command) => {
-		const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-
-		if (newState) {
-			this.onChange(newState);
-			return 'handled';
-		}
-
-		return 'not-handled';
-	}
-
-	onUnderlineClick = () => {
-   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-	onBoldClick = () => {
-	 this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-	}
-	onToggleCode = () => {
- this.onChange(RichUtils.toggleCode(this.state.editorState));
- }
 	//Question methods
 	renderQuestions(){
 		return(
@@ -59,8 +34,9 @@ class QuestionList extends Component{
 
 		// Find the text field via the React ref
 		var title = ReactDOM.findDOMNode(this.refs.questionAsked).value.trim();
-		var postedat =Date.now();
+		var text = ReactDOM.findDOMNode(this.refs.questionText).value.trim();
 		var theme = ReactDOM.findDOMNode(this.refs.questionTheme).value.trim();
+		var postedat =Date.now();
 		var votes = 0;
 		var answers = [];
 		Questions.insert({
@@ -68,8 +44,10 @@ class QuestionList extends Component{
 			postedat,
 			theme,
 			votes,
-			answers,// current time
+			answers,
+			text,
 		});
+		alert("Pregunta subida")
 
 		Meteor.call('users.questions', {
 		  userId: Meteor.userId()
@@ -84,7 +62,7 @@ class QuestionList extends Component{
 		// Clear form
 		ReactDOM.findDOMNode(this.refs.questionAsked).value = '';
 		ReactDOM.findDOMNode(this.refs.questionTheme).value = '';
-
+		ReactDOM.findDOMNode(this.refs.questionText).value = '';
 	}
 
 	render(){
@@ -106,28 +84,10 @@ class QuestionList extends Component{
 								ref="questionAsked"
 							/>
 					<h4>Explica tu pregunta:</h4>
-					<button
-						className="btn btn-outline-secondary"
-						onClick={this.onUnderlineClick}>
-						<u>Underline</u>
-					</button>
-					<button
-						className="btn btn-outline-secondary"
-						onClick={this.onBoldClick}>
-						<b>Bold</b>
-					</button>
-					<button
-						className="btn btn-outline-secondary"
-						onClick={this.onToggleCode}>
-						Code Block
-					</button>
-					<Editor
-						id="DraftEditor-root"
-						editorState={this.state.editorState}
-						handleKeyCommand={this.handleKeyCommand}
-						onChange={this.onChange}
+					<input
+						className="container-fluid border"
+						type="text"
 						ref="questionText"
-						placeholder="Explica aquí"
 					/>
 				</div>
 				<button className='btn-primary btn-lg'
