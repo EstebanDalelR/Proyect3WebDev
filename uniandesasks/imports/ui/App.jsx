@@ -46,6 +46,7 @@ export default AppContainer = createContainer((props) => {
 	if(Meteor.user()){
 		Meteor.subscribe('user');
 	}
+  	Meteor.subscribe('questions');
 	return {
 		_id: Meteor.userId(),
 		currentUser: (Meteor.user())?Meteor.user():{},
