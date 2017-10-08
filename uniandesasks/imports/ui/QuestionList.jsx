@@ -1,13 +1,12 @@
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {Editor, EditorState, RichUtils} from "draft-js";
+import {Editor, EditorState, RichUtils, CSS} from "draft-js";
 
 import Question from './Question.jsx';
 
 import {Questions} from '../../imports/api/Questions.js';
 
-import './css/draft.css';
 /**
 Clase para mostrar una lista de preguntas
 **/
@@ -25,13 +24,6 @@ class QuestionList extends Component{
 	}
 
 	//Editor methods
-	_onBoldClick() {
-		this.onChange(RichUtils.toggleInlineStyle(
-			this.state.editorState,
-			"BOLD"
-		));
-	}
-
 	handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
@@ -43,6 +35,15 @@ class QuestionList extends Component{
 		return 'not-handled';
 	}
 
+	onUnderlineClick = () => {
+   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+	onBoldClick = () => {
+	 this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+	}
+	onToggleCode = () => {
+ this.onChange(RichUtils.toggleCode(this.state.editorState));
+ }
 	//Question methods
 	renderQuestions(){
 		return(
@@ -52,6 +53,7 @@ class QuestionList extends Component{
 		);
 	}
 
+	//submit button handler
 	handleSubmit(event) {
 		event.preventDefault();
 
@@ -82,30 +84,47 @@ class QuestionList extends Component{
 				<h1>Un amigo de Seneca pregunta:</h1>
 				<div className=" rounded border border-secondary">
 					<h4>Escribe aquí el tema de tu pregunta:</h4>
-					<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
 						<input
+							className="container-fluid border"
 							type="text"
 							ref="questionTheme"
-							placeholder="¿De qué tema es tu pregunta?"
 						/>
-						</form>
 						<h4>Escribe aquí tu pregunta:</h4>
-						<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
 							<input
+								className="container-fluid border"
 								type="text"
 								ref="questionAsked"
-								placeholder="¿Qué quieres preguntar?"
 							/>
-					</form>
-					<h4>Explica tu pregunta</h4>
-					<Editor id="DraftEditor-root"
+					<h4>Explica tu pregunta:</h4>
+					<button
+						className="btn btn-outline-secondary"
+						onClick={this.onUnderlineClick}>
+						<u>Underline</u>
+					</button>
+					<button
+						className="btn btn-outline-secondary"
+						onClick={this.onBoldClick}>
+						<b>Bold</b>
+					</button>
+					<button
+						className="btn btn-outline-secondary"
+						onClick={this.onToggleCode}>
+						Code Block
+					</button>
+					<Editor
+						id="DraftEditor-root"
 						editorState={this.state.editorState}
 						handleKeyCommand={this.handleKeyCommand}
 						onChange={this.onChange}
-						placeholder="¿Quieres agregar algo?"
 						ref="questionText"
+						placeholder="Explica aquí"
 					/>
 				</div>
+				<button className='btn-primary btn-lg'
+					onClick={this.handleSubmit.bind(this)}>
+					Preguntar
+				</button>
+
 				<div className="container container-fluid">
 					{this.renderQuestions()}
 				</div>
