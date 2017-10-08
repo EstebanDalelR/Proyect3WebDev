@@ -69,6 +69,16 @@ class QuestionList extends Component{
 			answers,// current time
 		});
 
+		Meteor.call('users.questions', {
+		  userId: Meteor.userId()
+		}, (err, res) => {
+		  if (err) {
+		    alert(err);
+		  } else {
+		    // success!
+		  }
+		});
+
 		// Clear form
 		ReactDOM.findDOMNode(this.refs.questionAsked).value = '';
 		ReactDOM.findDOMNode(this.refs.questionTheme).value = '';

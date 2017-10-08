@@ -36,7 +36,6 @@ class StaticSideBar extends Component{
 			</div>
 		);
 	}
-
 }
 
 StaticSideBar.PropTypes={

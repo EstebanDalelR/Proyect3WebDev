@@ -16,34 +16,33 @@ import './css/App.css';
 class App extends Component{
 	constructor(props){
 		super(props);
-		this.state = {questionSelected: ' ',
-	};
-}
+		this.state = {questionSelected: ' '};
+	}
 
-returnHome(){
-	this.setState(()=>{return{questionSelected:' '}});
-	console.log('return home');
-}
+	returnHome(){
+		this.setState(()=>{return{questionSelected:' '}});
+		console.log('return home');
+	}
 
-selectQuestion(quest){
-	this.setState(()=>{return{questionSelected:quest}});
-	console.log('something selected');
-	console.log(quest);
-}
+	selectQuestion(quest){
+		this.setState(()=>{return{questionSelected:quest}});
+		console.log('something selected');
+		console.log(quest);
+	}
 
-render(){
-	return(
-		<div>
-			<NavBar/>
-			<StaticSideBar currentUser={this.props.currentUser} returnHome={this.returnHome.bind(this)}/>
-			<div className="container top40 main">
-				{(this.state.questionSelected === ' ')?
-					<QuestionList selectQuestion={this.selectQuestion.bind(this)} questions={this.props.questions}/>:
-						<QuestionAnswers questionSelected={this.state.questionSelected}/>}
+	render(){
+		return(
+			<div>
+				<NavBar/>
+				<StaticSideBar currentUser={this.props.currentUser} returnHome={this.returnHome.bind(this)}/>
+				<div className="container top40 main">
+					{(this.state.questionSelected === ' ')?
+						<QuestionList selectQuestion={this.selectQuestion.bind(this)} questions={this.props.questions}/>:
+							<QuestionAnswers questionSelected={this.state.questionSelected}/>}
+				</div>
 			</div>
-		</div>
-	);
-}
+		);
+	}
 }
 
 export default AppContainer = createContainer((props) => {
