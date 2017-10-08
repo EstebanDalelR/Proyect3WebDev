@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import {Editor, EditorState, RichUtils} from "draft-js";
 
 import Question from './Question.jsx';
-import {Editor, EditorState, RichUtils} from "draft-js";
-import ReactDOM from 'react-dom';
 
+import {Questions} from '../../imports/api/Questions.js';
 
 import './css/draft.css';
 /**
@@ -55,15 +56,21 @@ class QuestionList extends Component{
 		event.preventDefault();
 
 		// Find the text field via the React ref
-		const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
+		var text = ReactDOM.findDOMNode(this.refs.questionAsked).value.trim();
+		var postedat =Date.now();
+		var theme = ReactDOM.findDOMNode(this.refs.questionTheme).value.trim();
+		var votes = 0;
 		Questions.insert({
 			text,
-			createdAt: new Date(), // current time
+			postedat,
+			theme,
+			votes, // current time
 		});
 
 		// Clear form
-		ReactDOM.findDOMNode(this.refs.textInput).value = '';
+		ReactDOM.findDOMNode(this.refs.questionAsked).value = '';
+		ReactDOM.findDOMNode(this.refs.questionTheme).value = '';
+
 	}
 
 	render(){
@@ -72,13 +79,21 @@ class QuestionList extends Component{
 			<div className="container container-fluid">
 				<h1>Un amigo de Seneca pregunta:</h1>
 				<div className=" rounded border border-secondary">
-					<h4>Escribe aquí tu pregunta:</h4>
+					<h4>Escribe aquí el tema de tu pregunta:</h4>
 					<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
 						<input
 							type="text"
-							ref="textInput"
-							placeholder="¿Qué quieres preguntar?"
+							ref="questionTheme"
+							placeholder="¿De qué tema es tu pregunta?"
 						/>
+						</form>
+						<h4>Escribe aquí tu pregunta:</h4>
+						<form className="new-question" onSubmit={this.handleSubmit.bind(this)} >
+							<input
+								type="text"
+								ref="questionAsked"
+								placeholder="¿Qué quieres preguntar?"
+							/>
 					</form>
 					<h4>Explica tu pregunta</h4>
 					<Editor id="DraftEditor-root"
