@@ -15,7 +15,6 @@ class QuestionAnswers extends Component{
 	}
 
 	render(){
-		console.log(this.props.questionSelected.answers);
 		return(
 			<div className="container-fluid  rounded border border-secondary">
 				<div className= "row">
@@ -24,7 +23,7 @@ class QuestionAnswers extends Component{
 				</div>
 
 				<div className= "row">
-					<div className= "col-2"><QuestionVote votes={this.props.questionSelected.votes}/></div>
+					<div className= "col-2"><QuestionVote votes={this.props.questionSelected.votes} identifier={this.props.questionSelected._id}/></div>
 					<div>{this.props.questionSelected.text}</div>
 				</div>
 

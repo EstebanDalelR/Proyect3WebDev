@@ -20,22 +20,29 @@ class AddAnswer extends Component{
 		var userId = Meteor.userId();
 		var poster = Meteor.user().name;
 		var answers = { text: text, postedat:postedat, votes:votes, poster:poster, userId:userId};
-		Questions.update(
-			this.props.identifier, {
-			$push: {answers}
 
+		//Calls secure update function as method.
+		Meteor.call('questions.addAnswer', {
+			id: this.props.identifier, 
+			answers: {answers}
+		}, (err, res) => {
+			if(err){
+				console.log(err);
+			} else {
+				// success!
+			}
 		});
 
 		Meteor.call('users.answers', {
 		  userId: userId
 		}, (err, res) => {
 		  if (err) {
-		    alert(err);
+		    console.log(err);
 		  } else {
 		    // success!
 		  }
 		});
-		alert("Respuesta subida, gracias!")
+		//alert("Respuesta subida, gracias!")
 
 		// Clear form
 		ReactDOM.findDOMNode(this.refs.answerText).value = '';
