@@ -19,7 +19,7 @@ class Question extends Component{
 				</div>
 
 				<div className= "row">
-					<div className= "col-2"><Vote votes={this.props.question.votes}/></div>
+					<div className= "col-2"><Vote votes={this.props.question.votes} identifier={this.props.question._id}/></div>
 					<div>{this.props.question.text}</div>
 				</div>
 
